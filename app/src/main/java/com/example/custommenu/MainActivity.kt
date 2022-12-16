@@ -14,13 +14,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var leftMenuView: View
 
     lateinit var menuLayout: ConstraintLayout
-    var menuIsHidden = true
 
     private lateinit var navController: NavController
 
     companion object {
         lateinit var activityInstance: MainActivity
         var currentDestinationId: Int = 0
+        var menuIsHidden = true
 
         /**
          * Return initialization state of the instance
@@ -50,8 +50,8 @@ class MainActivity : AppCompatActivity() {
         leftMenuView = findViewById(R.id.left_menu_bg)
 
         menuIcon.setOnClickListener {
-            if (menuIsHidden) showMenu()
-            else hideMenu()
+            showMenu()
+            menuIsHidden = false
         }
 
         leftMenuView.setOnClickListener {
@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun hideMenu() {
+        menuIsHidden = true
         menuLayout.visibility = View.GONE
     }
 
