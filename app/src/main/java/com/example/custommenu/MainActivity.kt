@@ -1,17 +1,28 @@
 package com.example.custommenu
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.custommenu.model.MenuItem
+import com.example.custommenu.ui.menuAdapter.MenuAdapter
+import com.example.custommenu.ui.menuAdapter.MenuClickListener
+import com.example.custommenu.util.MenuList.MENU_LIST
+import com.example.spicyanimation.SpicyAnimation
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MenuClickListener {
 
     lateinit var menuIcon: ImageView
     lateinit var leftMenuView: View
+    lateinit var listMenu: RecyclerView
+    private lateinit var menuAdapter: MenuAdapter
 
     lateinit var menuLayout: ConstraintLayout
 
@@ -48,6 +59,14 @@ class MainActivity : AppCompatActivity() {
         menuIcon = findViewById(R.id.menu_icon)
         menuLayout = findViewById(R.id.menu_layout)
         leftMenuView = findViewById(R.id.left_menu_bg)
+        listMenu = findViewById(R.id.menu_list)
+
+        menuAdapter = MenuAdapter(applicationContext, MENU_LIST, this)
+
+        listMenu.apply {
+            layoutManager = LinearLayoutManager(applicationContext)
+            adapter = menuAdapter
+        }
 
         menuIcon.setOnClickListener {
             showMenu()
@@ -61,10 +80,34 @@ class MainActivity : AppCompatActivity() {
 
     fun hideMenu() {
         menuIsHidden = true
+        menuIcon.isEnabled = true
         menuLayout.visibility = View.GONE
     }
 
     fun showMenu() {
         menuLayout.visibility = View.VISIBLE
+        menuIcon.isEnabled = false
+        SpicyAnimation().fadeToRight(menuLayout, 50F, 300)
     }
+
+    override fun onMenuChosen(index: Int, menuItem: MenuItem) {
+        MENU_LIST.forEach {
+            hideMenu()
+            if (it.indexItem.equals(index)) it.isSelected = true
+            else it.isSelected = false
+            Log.d("TEstApp", "index = " + index)
+            Log.d("TEstApp", "selection = " + it.isSelected)
+        }
+        menuAdapter.notifyDataSetChanged()
+        navigateToDestination(index)
+    }
+
+    fun navigateToDestination(index: Int){
+        when(index){
+            0 -> navController.navigate(R.id.dashboardFragment)
+            1 -> navController.navigate(R.id.favouriteFragment)
+            2 -> navController.navigate(R.id.settingFragment)
+        }
+    }
+
 }
