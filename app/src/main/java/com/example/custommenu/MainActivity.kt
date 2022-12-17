@@ -40,13 +40,23 @@ class MainActivity : AppCompatActivity(), MenuClickListener {
         fun activityIsInitialized() = ::activityInstance.isInitialized
     }
 
+    override fun onStart() {
+        super.onStart()
+        activityInstance = this
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        activityInstance = this
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main)
+        menuIcon = findViewById(R.id.menu_icon)
+        menuLayout = findViewById(R.id.menu_layout)
+        leftMenuView = findViewById(R.id.left_menu_bg)
+        listMenu = findViewById(R.id.menu_list)
+        menuIcon.visibility = View.GONE
 
-        activityInstance = this
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             currentDestinationId = destination.id
@@ -55,12 +65,12 @@ class MainActivity : AppCompatActivity(), MenuClickListener {
         initCoponents()
     }
 
-    private fun initCoponents() {
-        menuIcon = findViewById(R.id.menu_icon)
-        menuLayout = findViewById(R.id.menu_layout)
-        leftMenuView = findViewById(R.id.left_menu_bg)
-        listMenu = findViewById(R.id.menu_list)
+    override fun onBackPressed() {
+        super.onBackPressed()
+        hideMenu()
+    }
 
+    private fun initCoponents() {
         menuAdapter = MenuAdapter(applicationContext, MENU_LIST, this)
 
         listMenu.apply {
@@ -102,12 +112,11 @@ class MainActivity : AppCompatActivity(), MenuClickListener {
         navigateToDestination(index)
     }
 
-    fun navigateToDestination(index: Int){
-        when(index){
+    fun navigateToDestination(index: Int) {
+        when (index) {
             0 -> navController.navigate(R.id.dashboardFragment)
             1 -> navController.navigate(R.id.favouriteFragment)
             2 -> navController.navigate(R.id.settingFragment)
         }
     }
-
 }
