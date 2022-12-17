@@ -25,7 +25,7 @@
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.custommenu.ProfileFragment"
+        android:name="com.example.custommenu.ui.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 
