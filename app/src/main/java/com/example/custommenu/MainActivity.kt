@@ -55,6 +55,11 @@ class MainActivity : AppCompatActivity(), MenuClickListener {
         initCoponents()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        hideMenu()
+    }
+
     private fun initCoponents() {
         menuIcon = findViewById(R.id.menu_icon)
         menuLayout = findViewById(R.id.menu_layout)
@@ -102,12 +107,11 @@ class MainActivity : AppCompatActivity(), MenuClickListener {
         navigateToDestination(index)
     }
 
-    fun navigateToDestination(index: Int){
-        when(index){
+    fun navigateToDestination(index: Int) {
+        when (index) {
             0 -> navController.navigate(R.id.dashboardFragment)
             1 -> navController.navigate(R.id.favouriteFragment)
             2 -> navController.navigate(R.id.settingFragment)
         }
     }
-
 }
