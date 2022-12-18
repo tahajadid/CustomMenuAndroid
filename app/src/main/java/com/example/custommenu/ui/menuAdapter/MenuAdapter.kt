@@ -40,7 +40,7 @@ class MenuAdapter(
                 title.setTextColor(Color.parseColor("#FFFFFF"))
             } else {
                 title.setBackgroundResource(R.drawable.unselected_bg)
-                title.setTextColor(Color.parseColor("#FF018786"))
+                title.setTextColor(Color.parseColor("#454017"))
             }
 
             itemView.setOnClickListener {
