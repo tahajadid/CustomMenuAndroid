@@ -116,7 +116,8 @@ class MainActivity : AppCompatActivity(), MenuClickListener {
         when (index) {
             0 -> navController.navigate(R.id.dashboardFragment)
             1 -> navController.navigate(R.id.favouriteFragment)
-            2 -> navController.navigate(R.id.settingFragment)
+            2 -> navController.navigate(R.id.profileFragment)
+            3 -> navController.navigate(R.id.settingFragment)
         }
     }
 }

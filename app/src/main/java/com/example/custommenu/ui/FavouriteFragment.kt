@@ -20,7 +20,8 @@ class FavouriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourite, container, false)
         MainActivity.activityInstance.menuIcon.visibility = View.VISIBLE
+
+        return inflater.inflate(R.layout.fragment_favourite, container, false)
     }
 }

@@ -4,6 +4,9 @@ import com.example.custommenu.model.MenuItem
 
 object MenuList {
 
+    /**
+     * Static list of the menu item
+     */
     val MENU_LIST = mutableListOf(
         MenuItem(0, "Dashboard", true),
         MenuItem(1, "Favourite", false),
