@@ -14,9 +14,9 @@ import com.example.custommenu.util.firstOpenning
 import com.example.spicyanimation.SpicyAnimation
 
 class DashboardFragment : Fragment() {
-    lateinit var pCL: ConstraintLayout
-    lateinit var fCL: ConstraintLayout
-    lateinit var sCL: ConstraintLayout
+    lateinit var profileCL: ConstraintLayout
+    lateinit var favouriteCL: ConstraintLayout
+    lateinit var settingCL: ConstraintLayout
 
     lateinit var bin: FragmentDashboardBinding
 
@@ -32,34 +32,41 @@ class DashboardFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
-        pCL = root.findViewById(R.id.profile_cl)
-        fCL = root.findViewById(R.id.favourite_cl)
-        sCL = root.findViewById(R.id.setting_cl)
+        profileCL = root.findViewById(R.id.profile_cl)
+        favouriteCL = root.findViewById(R.id.favourite_cl)
+        settingCL = root.findViewById(R.id.setting_cl)
+
         animateLayout()
         initComponents()
 
-        // hide menu Icon
+        // hide menu Icon in Dashboard view
         if (!firstOpenning) MainActivity.activityInstance.menuIcon.visibility = View.GONE
         firstOpenning = false
 
         return root
     }
 
+    /**
+     * function to init the click on the sections
+     */
     private fun initComponents() {
-        pCL.setOnClickListener {
+        profileCL.setOnClickListener {
             findNavController().navigate(R.id.profileFragment)
         }
-        fCL.setOnClickListener {
+        favouriteCL.setOnClickListener {
             findNavController().navigate(R.id.favouriteFragment)
         }
-        sCL.setOnClickListener {
+        settingCL.setOnClickListener {
             findNavController().navigate(R.id.settingFragment)
         }
     }
 
+    /**
+     * function to do animation on Constraint Layout (sections)
+     */
     private fun animateLayout() {
-        SpicyAnimation().fadeToDown(pCL, 50F, 600)
-        SpicyAnimation().fadeToDown(fCL, 50F, 800)
-        SpicyAnimation().fadeToDown(sCL, 50F, 1000)
+        SpicyAnimation().fadeToDown(profileCL, 50F, 600)
+        SpicyAnimation().fadeToDown(favouriteCL, 50F, 800)
+        SpicyAnimation().fadeToDown(settingCL, 50F, 1000)
     }
 }
