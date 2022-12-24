@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.custommenu.MainActivity
 import com.example.custommenu.R
+import com.example.custommenu.util.MenuList
 
 class ProfileFragment : Fragment() {
 
@@ -22,6 +23,18 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         MainActivity.activityInstance.menuIcon.visibility = View.VISIBLE
 
+        changeIndexOfMenu()
+
         return inflater.inflate(R.layout.fragment_profile, container, false)
+    }
+
+    /**
+     * function that change the selected tem on the Menu
+     */
+    private fun changeIndexOfMenu() {
+        MenuList.MENU_LIST.forEach {
+            if (it.indexItem.equals(2)) it.isSelected = true
+            else it.isSelected = false
+        }
     }
 }
