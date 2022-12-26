@@ -11,7 +11,7 @@ In the other Fragments we need to show the icon of Burger Menu and just modify t
 
 ```groovy
 /**
-* function that change the selected tem on the Menu
+* function that change the selected item on the Menu
 */    
 private fun changeIndexOfMenu() {
   MenuList.MENU_LIST.forEach {
