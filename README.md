@@ -6,6 +6,7 @@ This project implement the idea of setting a custom menu where Burger Menu that 
 
 In this Main Fragment (DashBoardFragment) we hide the icon of burger menu and we don't impact the backStack of the Fragments Navigation 
 
+<img src="https://github.com/tahajadid/CustomMenuAndroid/blob/develop/demo/dashboard_screen.png" width="150" height="250"/>
 
 In the other Fragments we need to show the icon of Burger Menu and just modify the MENU_LIST with the following function
 
@@ -20,3 +21,5 @@ private fun changeIndexOfMenu() {
   }
 }
 ```
+<img src="https://github.com/tahajadid/CustomMenuAndroid/blob/develop/demo/favourite_screen.png.png" width="150" height="250"/>
+<img src="https://github.com/tahajadid/CustomMenuAndroid/blob/develop/demo/menu_screen.png.png" width="150" height="250"/>
